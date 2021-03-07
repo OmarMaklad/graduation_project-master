@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/screens/forget_password/controller.dart';
 import 'package:graduation_project/ui_widgets/custom_button.dart';
 import 'package:graduation_project/ui_widgets/text_field.dart';
+import 'package:graduation_project/widgets/customButton.dart';
+import 'package:graduation_project/widgets/customTextFeild.dart';
 
 class ForgetPasswordView extends StatefulWidget {
   @override
@@ -38,13 +40,12 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
               ),
               CustomTextField(
                 hint: 'البريد الالكتروني',
-                secure: false,
-                onSave: (value) {
+                onsave: (value) {
                   setState(() {
                     _email = value;
                   });
                 },
-                validate: (value) {
+                valid: (value) {
                   if (value.toString().isEmpty) {
                     return 'ادخل البريد الالكتروني';
                   } else {
@@ -62,7 +63,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                   : Builder(
                       builder: (ctx) => CustomButton(
                           title: "إرسال الرمز",
-                          onTap: () async {
+                          onPressed: () async {
                             String message;
                             if (_globalKey.currentState.validate()) {
                               _globalKey.currentState.save();

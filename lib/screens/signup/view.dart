@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/screens/bottom_navigation/view.dart';
 import 'package:graduation_project/ui_widgets/custom_button.dart';
 import 'package:graduation_project/ui_widgets/text_field.dart';
+import 'package:graduation_project/widgets/customButton.dart';
+import 'package:graduation_project/widgets/customTextFeild.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -28,23 +30,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           CustomTextField(
             hint: 'First name',
-            secure: false,
+
           ),
           CustomTextField(
             hint: 'Last name',
-            secure: false,
+
           ),
           CustomTextField(
             hint: 'Email address',
-            secure: false,
+
           ),
           CustomTextField(
             hint: 'Password',
-            secure: true,
+
           ),
           CustomTextField(
             hint: 'Confirm password',
-            secure: true,
+
           ),
           SizedBox(
             height: 10,
@@ -65,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           CustomButton(
             title: 'Create your account',
-            onTap: () {
+            onPressed: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(

@@ -1,6 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:graduation_project/Admin/views/home/view.dart';
+import 'package:graduation_project/saler/home/view.dart';
 import 'package:graduation_project/screens/bottom_navigation/view.dart';
 import 'package:graduation_project/screens/forget_password/view.dart';
 import 'package:graduation_project/screens/login/controller.dart';
@@ -8,6 +10,8 @@ import 'package:graduation_project/screens/login/model.dart';
 import 'package:graduation_project/screens/signup/view.dart';
 import 'package:graduation_project/ui_widgets/custom_button.dart';
 import 'package:graduation_project/ui_widgets/text_field.dart';
+import 'package:graduation_project/widgets/customButton.dart';
+import 'package:graduation_project/widgets/customTextFeild.dart';
 import 'package:toast/toast.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -84,27 +88,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   CustomTextField(
                     hint: 'Email address',
-                    secure: false,
-                    validate: (value) {
+                    valid: (value) {
                       if (value.toString().isEmpty) {
                         return 'Email required';
                       }
                     },
-                    onSave: (value) {
+                    onsave: (value) {
 
                     },
                   ),
                   CustomTextField(
                     hint: 'Password',
-                    secure: true,
-                    validate: (value) {
-                      if (value.toString().isEmpty) {
-                        return 'Password required';
-                      }
-                    },
-                    onSave: (value) {
-
-                    },
                   ),
                 ],
               )),
@@ -127,16 +121,23 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 50,
           ),
           CustomButton(
-                  title: 'Login',
-                  onTap: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => BottomNavigationScreen()));
+                  title: 'Admin',
+                  onPressed: () {
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => TabsScreen()));
+                  },
+                  color: Colors.amber,
+                ),
+          CustomButton(
+                  title: 'Saler',
+                  onPressed: () {
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => SalerTabsScreen()));
                   },
                   color: Colors.amber,
                 ),
           CustomButton(
             title: 'Create Account',
             color: Colors.grey,
-            onTap: () {
+            onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => SignUpScreen()));
             },
