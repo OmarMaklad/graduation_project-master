@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Admin/views/home/view.dart';
+import 'package:graduation_project/CustomService/home/view.dart';
 import 'package:graduation_project/saler/home/view.dart';
 import 'package:graduation_project/screens/bottom_navigation/view.dart';
 import 'package:graduation_project/screens/forget_password/view.dart';
@@ -131,6 +132,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   title: 'Saler',
                   onPressed: () {
                     Navigator.push(context,MaterialPageRoute(builder: (context) => SalerTabsScreen()));
+                  },
+                  color: Colors.amber,
+                ),
+          CustomButton(
+                  title: 'Custom Service',
+                  onPressed: () {
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => CustomServiceHome()));
                   },
                   color: Colors.amber,
                 ),
