@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           accentColor: Colors.greenAccent, primaryColor: Colors.greenAccent),
-      home: ReLockMakerScreen(),
+      home: SplashScreen(),
     );
   }
 }

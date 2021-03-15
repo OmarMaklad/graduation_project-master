@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:graduation_project/screens/bottom_navigation/view.dart';
+import 'package:graduation_project/screens/home/view.dart';
 import 'package:graduation_project/ui_widgets/custom_button.dart';
 import 'package:graduation_project/ui_widgets/text_field.dart';
 import 'package:graduation_project/widgets/customButton.dart';
@@ -71,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => BottomNavigationScreen()));
+                      builder: (context) => HomeScreen()));
             },
             color: Colors.amber,
           ),

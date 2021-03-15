@@ -3,14 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Admin/views/home/view.dart';
 import 'package:graduation_project/CustomService/home/view.dart';
+import 'package:graduation_project/relockMaker/home/view.dart';
 import 'package:graduation_project/saler/home/view.dart';
-import 'package:graduation_project/screens/bottom_navigation/view.dart';
 import 'package:graduation_project/screens/forget_password/view.dart';
+import 'package:graduation_project/screens/home/view.dart';
 import 'package:graduation_project/screens/login/controller.dart';
 import 'package:graduation_project/screens/login/model.dart';
 import 'package:graduation_project/screens/signup/view.dart';
-import 'package:graduation_project/ui_widgets/custom_button.dart';
-import 'package:graduation_project/ui_widgets/text_field.dart';
 import 'package:graduation_project/widgets/customButton.dart';
 import 'package:graduation_project/widgets/customTextFeild.dart';
 import 'package:toast/toast.dart';
@@ -22,6 +21,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String email;
+  String password;
   // String _email;
   // String _password;
   // bool _loading = false;
@@ -95,11 +96,25 @@ class _LoginScreenState extends State<LoginScreen> {
                       }
                     },
                     onsave: (value) {
-
+                      setState(() {
+                        email=value;
+                      });
                     },
                   ),
                   CustomTextField(
                     hint: 'Password',
+                    valid: (val) {
+                      if (val.isEmpty) {
+                        return 'password required';
+                      }else if(val.length < 9 || val.length > 9){
+                        return 'password Should contain at least 8 num or more';
+                      }
+                    },
+                    onsave: (val){
+                      setState(() {
+                        password = val;
+                      });
+                    },
                   ),
                 ],
               )),
@@ -122,26 +137,26 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 50,
           ),
           CustomButton(
-                  title: 'Admin',
+                  title: 'Login',
                   onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => TabsScreen()));
+                   if(_formKey.currentState.validate()){
+                     if(email=="admin@admin"){
+                       Navigator.push(context,MaterialPageRoute(builder: (context) => TabsScreen()));
+                     }else if(email=="relock@relock"){
+                       Navigator.push(context,MaterialPageRoute(builder: (context) => ReLockMakerScreen()));
+                     }else if(email=="saler@saler"){
+                       Navigator.push(context,MaterialPageRoute(builder: (context) => SalerTabsScreen()));
+                     }else if(email == "custom@custom"){
+                       Navigator.push(context,MaterialPageRoute(builder: (context) => CustomServiceHome()));
+                     }else if(email == "user@user"){
+                       Navigator.push(context,MaterialPageRoute(builder: (context) => HomeScreen()));
+                     }
+
+                   }
                   },
-                  color: Colors.amber,
+                  color: Colors.green,
                 ),
-          CustomButton(
-                  title: 'Saler',
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => SalerTabsScreen()));
-                  },
-                  color: Colors.amber,
-                ),
-          CustomButton(
-                  title: 'Custom Service',
-                  onPressed: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => CustomServiceHome()));
-                  },
-                  color: Colors.amber,
-                ),
+
           CustomButton(
             title: 'Create Account',
             color: Colors.grey,

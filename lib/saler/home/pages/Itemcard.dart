@@ -12,7 +12,7 @@ class _ItemCardState extends State<ItemCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height*.3,
+      height: MediaQuery.of(context).size.height*.27,
       padding: EdgeInsets.symmetric(horizontal:8,vertical:10),
       margin: EdgeInsets.symmetric(horizontal:10,),
       decoration: BoxDecoration(
