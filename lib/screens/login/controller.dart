@@ -3,7 +3,7 @@ import 'package:graduation_project/screens/login/model.dart';
 
 class LoginController {
   Future<String> login(String email, String password) async {
-    final response = await post('login', body: {
+    final response = await dioPost('login', body: {
       'email': email,
       'password': password,
     });

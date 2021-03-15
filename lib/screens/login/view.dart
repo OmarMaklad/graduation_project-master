@@ -7,7 +7,6 @@ import 'package:graduation_project/constants.dart';
 import 'package:graduation_project/core/router.dart';
 import 'package:graduation_project/core/validation.dart';
 import 'package:graduation_project/saler/home/view.dart';
-import 'package:graduation_project/screens/bottom_navigation/view.dart';
 import 'package:graduation_project/screens/forget_password/view.dart';
 import 'package:graduation_project/screens/home/view.dart';
 import 'package:graduation_project/screens/login/controller.dart';
