@@ -3,9 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Admin/views/home/view.dart';
 import 'package:graduation_project/CustomService/home/view.dart';
+import 'package:graduation_project/constants.dart';
+import 'package:graduation_project/core/router.dart';
+import 'package:graduation_project/core/validation.dart';
 import 'package:graduation_project/saler/home/view.dart';
 import 'package:graduation_project/screens/bottom_navigation/view.dart';
 import 'package:graduation_project/screens/forget_password/view.dart';
+import 'package:graduation_project/screens/home/view.dart';
 import 'package:graduation_project/screens/login/controller.dart';
 import 'package:graduation_project/screens/login/model.dart';
 import 'package:graduation_project/screens/signup/view.dart';
@@ -13,6 +17,9 @@ import 'package:graduation_project/ui_widgets/custom_button.dart';
 import 'package:graduation_project/ui_widgets/text_field.dart';
 import 'package:graduation_project/widgets/customButton.dart';
 import 'package:graduation_project/widgets/customTextFeild.dart';
+import 'package:graduation_project/widgets/loading_indicator.dart';
+import 'package:graduation_project/widgets/toast.dart';
+import 'package:graduation_project/widgets/widget/GridButton.dart';
 import 'package:toast/toast.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -51,6 +58,8 @@ class _LoginScreenState extends State<LoginScreen> {
   //     _loading = false;
   //   });
   // }
+  String email,password;
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -89,17 +98,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   CustomTextField(
                     hint: 'Email address',
-                    valid: (value) {
-                      if (value.toString().isEmpty) {
-                        return 'Email required';
-                      }
-                    },
-                    onsave: (value) {
-
-                    },
+                    valid: Validations.email,
+                    onsave: (value) => email = value,
                   ),
                   CustomTextField(
                     hint: 'Password',
+                    valid: Validations.password,
+                    onsave: (value)=> password = value,
                   ),
                 ],
               )),
@@ -119,9 +124,39 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           SizedBox(
-            height: 50,
+            height: 20,
+          ),
+          _isLoading ? LoadingIndicator() : CustomButton(
+            title: 'Login',
+            color: Colors.greenAccent,
+            onPressed: () async{
+              _formKey.currentState.save();
+              if(!_formKey.currentState.validate()) return;
+              setState(()=> _isLoading = true);
+              final message = await LoginController().login(email, password);
+              if(message == 'ok') {
+                MagicRouter.navigateAndPopAll(getHomeByType());
+              } else
+                showToast(message);
+              setState(()=> _isLoading = false);
+            },
           ),
           CustomButton(
+            title: 'Create Account',
+            color: Colors.grey,
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SignUpScreen()));
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/*
+CustomButton(
                   title: 'Admin',
                   onPressed: () {
                     Navigator.push(context,MaterialPageRoute(builder: (context) => TabsScreen()));
@@ -142,16 +177,4 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                   color: Colors.amber,
                 ),
-          CustomButton(
-            title: 'Create Account',
-            color: Colors.grey,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SignUpScreen()));
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
+ */

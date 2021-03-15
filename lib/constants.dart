@@ -1,4 +1,31 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/Admin/views/home/view.dart';
+import 'package:graduation_project/CustomService/home/view.dart';
+import 'package:graduation_project/core/user_singleton.dart';
+import 'package:graduation_project/relockMaker/home/view.dart';
+import 'package:graduation_project/screens/login/view.dart';
+
+import 'saler/home/view.dart';
+
+Dio dio = Dio()..options.baseUrl = 'http://eco.ehtwa.site/api/';
+
+UserSingleton loggedUser = UserSingleton();
+
+const String DefaultErrorMessage = 'Sorry, Something went wrong!';
+
+Future<Response<dynamic>> post(String path,{Map<String, dynamic> body})=> dio.post(path,data: FormData.fromMap(body));
+Future<Response<dynamic>> get(String path,{Map<String, dynamic> headers})=> dio.get(path,queryParameters: headers);
+
+Widget getHomeByType(){
+  if(loggedUser.type == 'sealer') return SalerTabsScreen();
+  //TODO
+  else if(loggedUser.type == 'buyer') return Text('Buyer');
+  else if(loggedUser.type == 'admin') return TabsScreen();
+  else if(loggedUser.type == 'customer_service') return CustomServiceHome();
+  else if(loggedUser.type == 'maker') return ReLockMakerScreen();
+  else return LoginScreen();
+}
 
 const Color kPrimaryColor = Color(0xff000000);
 const Color kAccentColor = Color(0xFF707070);

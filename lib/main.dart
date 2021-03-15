@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/router.dart';
+import 'package:graduation_project/core/shared_preferences.dart';
 import 'package:graduation_project/relockMaker/home/view.dart';
 import 'screens/splash/splash_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedHelper.getUser();
   runApp(MyApp());
 }
 
@@ -17,9 +21,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: onGenerateRoute,
+      navigatorKey: navigatorKey,
       theme: ThemeData(
           accentColor: Colors.greenAccent, primaryColor: Colors.greenAccent),
-      home: ReLockMakerScreen(),
+      home: SplashScreen(),
     );
   }
 }
