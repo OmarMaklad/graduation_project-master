@@ -6,7 +6,9 @@ import 'package:graduation_project/Admin/views/home/pages/allChats/view.dart';
 import 'package:graduation_project/Admin/views/home/pages/items/view.dart';
 import 'package:graduation_project/saler/home/pages/Accepted.dart';
 import 'package:graduation_project/saler/home/pages/AddItems.dart';
+import 'package:graduation_project/saler/home/pages/Donation.dart';
 import 'package:graduation_project/saler/home/pages/notifications.dart';
+import 'package:graduation_project/saler/home/pages/profile.dart';
 import '../../constants.dart';
 
 
@@ -20,7 +22,9 @@ class _SalerTabsScreenState extends State<SalerTabsScreen> {
 
   int userScreenIndex = 1;
   List<Widget> userScreens= [
+    SettingView(),
     SalerNotification(),
+    DonationView(),
     OrdersAccepted(),
     AddItems(),
     AllChats(),
@@ -52,7 +56,9 @@ class _SalerTabsScreenState extends State<SalerTabsScreen> {
         ),
         animationCurve: Curves.bounceInOut,
         items: <Widget>[
+          Icon(Icons.person, size:30,color: Colors.green,),
           Icon(Icons.notifications, size:30,color: Colors.green,),
+          Icon(Icons.category, size:30,color: Colors.green,),
           Icon(Icons.home, size: 30,color: Colors.green,),
           Icon(Icons.add, size: 30,color: Colors.green,),
           Icon(Icons.chat,size: 30,color: Colors.green,)

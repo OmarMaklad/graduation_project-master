@@ -19,7 +19,7 @@ class _TabsScreenState extends State<TabsScreen> {
   List<Widget> userScreens= [
     NotificationView(),
     Orders(),
-    AllChats(),
+    AllChats(title: "Chat with customer service",),
   ];
 
   @override

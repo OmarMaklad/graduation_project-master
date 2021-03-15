@@ -26,15 +26,34 @@ class _NotificationViewState extends State<NotificationView> {
       child: Column(
         children: [
           CustomAppBar(title: "Notifications",),
-         Padding(
-           padding:  EdgeInsets.symmetric(horizontal: 20,vertical: 30),
-           child: Text("Send Notification To Saler And Bayer ",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-         ),
-         CustomTextField(hint: "notification Body",),
-         CustomButton(onPressed: (){},color: Colors.green,title: "Send",),
-          SizedBox(height: height*.07,),
-          CustomButton(onPressed: (){},color: Colors.red,title: "Connect With DataBase",),
+          Expanded(
+            child: ListView(
+              children: [
+               Padding(
+                 padding:  EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                 child: Text("Send Notification To Saler And Bayer ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+               ),
+               CustomTextField(hint: "notification Body",),
+               CustomButton(onPressed: (){},color: Colors.green,title: "Send",),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 20,vertical: 30),
+                  child: Text("Send Notification To Saler ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                ),
+                CustomTextField(hint: "notification Body",),
+                CustomButton(onPressed: (){},color: Colors.green,title: "Send",),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 20,vertical: 30),
+                  child: Text("Send Notification To  Bayer ",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                ),
+                CustomTextField(hint: "notification Body",),
+                CustomButton(onPressed: (){},color: Colors.green,title: "Send",),
+                SizedBox(height: height*.05,),
+                CustomButton(onPressed: (){},color: Colors.red,title: "Connect With DataBase",),
+                SizedBox(height: height*.05,),
 
+              ],
+            ),
+          ),
         ],
       ),
     );

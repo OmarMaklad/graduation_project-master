@@ -61,6 +61,60 @@ class _AddItemsState extends State<AddItems> {
 
                   ),
                   SizedBox(height: height*.02,),
+                  Container(
+                    height: height*.073,
+                    margin: EdgeInsets.symmetric(vertical: 10,horizontal:30),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border:Border.all(color: Colors.green,width:1) ,
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("select Category",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kTextColor),),
+                        DropdownButton(
+                            dropdownColor: Colors.white,
+                            value: 0,
+                            underline: Container(),
+                            items: [
+                              DropdownMenuItem(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 40),
+                                  child: Text("women",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
+                                ),
+                                value:0,
+                              ),
+                              DropdownMenuItem(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 40),
+                                  child: Text("man",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
+                                ),
+                                value: 1,
+                              ),
+                              DropdownMenuItem(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 40),
+                                  child: Text("children",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
+                                ),
+                                value: 2,
+                              ),
+                            ],
+                            onTap: (){
+                            },
+                            onChanged: (value) {
+                              setState(() {
+
+                              });
+
+                            }),
+                      ],
+                    ),
+                  ),
 
                   CustomTextField(
                       hint: "Product Name",
@@ -73,6 +127,7 @@ class _AddItemsState extends State<AddItems> {
                     hint: "Description",
                    line: true,
                   ),
+
 
                   SizedBox(height: height*.07,),
                   CustomButton(onPressed: (){}, title: "Add",color: Colors.green,)

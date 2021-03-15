@@ -19,7 +19,7 @@ class _CustomServiceHomeState extends State<CustomServiceHome> {
   int userScreenIndex = 1;
   List<Widget> userScreens= [
     AllReports(),
-    AllChats(),
+    AllChats(title: "Chat with Admin and Bayer",admin: true,),
   ];
 
   @override

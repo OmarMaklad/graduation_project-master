@@ -4,6 +4,9 @@ import '../../../../../constants.dart';
 
 
 class ChatsCard extends StatelessWidget {
+  final String text;
+
+  const ChatsCard({Key key, this.text}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -30,7 +33,14 @@ class ChatsCard extends StatelessWidget {
                 ),
               ),
               SizedBox(width: 15,),
-              Text("Omar Maklad",style: TextStyle(color:Colors.black,fontSize: 18, fontFamily: "dinnextl bold",),),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Sara",style: TextStyle(color:Colors.black,fontSize: 18, fontFamily: "dinnextl bold",),),
+                 text!=null?Text(text,style: TextStyle(color:Colors.black,fontSize: 18, fontFamily: "dinnextl bold",),)
+                  :SizedBox(),
+                ],
+              ),
 
             ],
           ),
