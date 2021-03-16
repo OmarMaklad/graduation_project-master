@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:graduation_project/Admin/views/home/pages/Notification/view.dart';
 import 'package:graduation_project/Admin/views/home/pages/allChats/view.dart';
 import 'package:graduation_project/Admin/views/home/pages/items/view.dart';
+import 'package:graduation_project/CustomService/home/pages/all_chats.dart';
 import 'package:graduation_project/CustomService/home/pages/reports.dart';
 import '../../constants.dart';
 
@@ -19,7 +20,8 @@ class _CustomServiceHomeState extends State<CustomServiceHome> {
   int userScreenIndex = 1;
   List<Widget> userScreens= [
     AllReports(),
-    AllChats(title: "Chat with Admin and Bayer",admin: true,),
+    ServiceAllChatsView(),
+    // AllChats(title: "Chat with Admin and Bayer",admin: true,),
   ];
 
   @override

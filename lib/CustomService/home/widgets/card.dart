@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-
 class ReportsCard extends StatelessWidget {
+  final String title;
+  final String date;
+  final String name;
 
+  ReportsCard({this.title, this.date, this.name});
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -25,11 +28,11 @@ class ReportsCard extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Reports #1",style: TextStyle(color:Colors.black,fontSize: 16, fontWeight: FontWeight.bold),),
+                  Text(title,style: TextStyle(color:Colors.black,fontSize: 16, fontWeight: FontWeight.bold),),
                   SizedBox(height: 3,),
-                  Text("2/12/2021",style: TextStyle(color:Colors.grey,fontSize: 14, fontWeight: FontWeight.bold),),
+                  Text(date,style: TextStyle(color:Colors.grey,fontSize: 14, fontWeight: FontWeight.bold),),
                   SizedBox(height: 3,),
-                  Text("Omar",style: TextStyle(color:Colors.grey,fontSize: 14, fontWeight: FontWeight.bold),),
+                  Text(name,style: TextStyle(color:Colors.grey,fontSize: 14, fontWeight: FontWeight.bold),),
                 ],
               ),
             ],

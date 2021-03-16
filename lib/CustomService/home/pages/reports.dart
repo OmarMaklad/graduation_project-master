@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/CustomService/home/controller.dart';
+import 'package:graduation_project/CustomService/home/models/reports.dart';
 import 'package:graduation_project/widgets/appBar.dart';
-import 'card.dart';
+import 'package:graduation_project/widgets/loading_indicator.dart';
+import '../widgets/card.dart';
 
-class AllReports extends StatelessWidget {
+class AllReports extends StatefulWidget {
+  @override
+  _AllReportsState createState() => _AllReportsState();
+}
+
+class _AllReportsState extends State<AllReports> {
+  bool _isLoading = true;
+  ServiceReportsModel _serviceReportsModel;
+  initState(){
+    getReports();
+    super.initState();
+  }
+  getReports()async{
+    _serviceReportsModel = await ServiceHomeController().getReports();
+    setState(()=> _isLoading = false);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +36,16 @@ class AllReports extends StatelessWidget {
             ),
             SizedBox(height: 20,),
             Expanded(
-              child: ListView.builder(
-                  itemCount: 4,
-                  itemBuilder: (_,index)=>ReportsCard()),
+              child: _isLoading ? LoadingIndicator() : ListView.builder(
+                  itemCount: _serviceReportsModel.data.length,
+                  itemBuilder: (_,index){
+                    final report = _serviceReportsModel.data[index];
+                    return ReportsCard(
+                      name: report.name,
+                      title: report.message,
+                      date: report.createdAt.toString(),
+                    );
+                  }),
             ),
           ],
         ),
