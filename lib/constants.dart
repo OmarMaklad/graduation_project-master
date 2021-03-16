@@ -15,19 +15,19 @@ UserSingleton loggedUser = UserSingleton();
 
 const String DefaultErrorMessage = 'Sorry, Something went wrong!';
 
-Map<String,dynamic> headers = {
-  'Authorization': 'Bearer ${loggedUser.apiToken}'
-};
-
 Future<Response<dynamic>> dioPost(String path,{Map<String, dynamic> body}){
-  dio.options.headers = headers;
+  dio.options.headers = {
+    'Authorization': 'Bearer ${loggedUser.apiToken}'
+  };
   final response = dio.post(path,data: FormData.fromMap(body));
   dio.options.headers = null;
   return response;
 }
 
 Future<Response<dynamic>> dioGet(String path){
-  dio.options.headers = headers;
+  dio.options.headers = {
+    'Authorization': 'Bearer ${loggedUser.apiToken}'
+  };
   final response = dio.get(path);
   dio.options.headers = null;
   return response;
