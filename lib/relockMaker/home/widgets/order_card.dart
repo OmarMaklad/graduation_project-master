@@ -4,17 +4,16 @@ import 'package:graduation_project/relockMaker/orderDetails/view.dart';
 import '../../../constants.dart';
 
 
-class ReLockMakerOrderCard extends StatefulWidget {
-  @override
-  _ReLockMakerOrderCardState createState() => _ReLockMakerOrderCardState();
-}
-
-class _ReLockMakerOrderCardState extends State<ReLockMakerOrderCard> {
-
+class ReLockMakerOrderCard extends StatelessWidget {
+  final String image;
+  final String itemName;
+  final String ownerName;
+  final int orderId;
+  ReLockMakerOrderCard({this.image, this.itemName, this.ownerName, this.orderId});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context) => ReLockMakerOrderDetailsView(),)),
+      onTap: ()=> Navigator.of(context).push(MaterialPageRoute(builder: (context) => ReLockMakerOrderDetailsView(orderId),)),
       child: Container(
         height: MediaQuery.of(context).size.height*.3,
         padding: EdgeInsets.symmetric(horizontal:8,vertical:10),
@@ -36,19 +35,21 @@ class _ReLockMakerOrderCardState extends State<ReLockMakerOrderCard> {
                   decoration: BoxDecoration(
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(20),
-
+                    //TODO: Uncomment Image
+                    // image: image == null ? null : DecorationImage(
+                    //   image: NetworkImage(image),
+                    // )
                   ),
-
                 ),
                 SizedBox(width:15,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Items Name: ",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kTextColor),),
-                    Text("jacket",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,),),
+                    Text(itemName,textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,),),
                     SizedBox(height:15,),
                     Text("Selar Name ",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kTextColor),),
-                    Text("Omar",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+                    Text(ownerName,textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
                   ],
                 ),
               ],

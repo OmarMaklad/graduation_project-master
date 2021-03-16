@@ -15,8 +15,23 @@ UserSingleton loggedUser = UserSingleton();
 
 const String DefaultErrorMessage = 'Sorry, Something went wrong!';
 
-Future<Response<dynamic>> dioPost(String path,{Map<String, dynamic> body})=> dio.post(path,data: FormData.fromMap(body));
-Future<Response<dynamic>> get(String path,{Map<String, dynamic> headers})=> dio.get(path,queryParameters: headers);
+Map<String,dynamic> headers = {
+  'Authorization': 'Bearer ${loggedUser.apiToken}'
+};
+
+Future<Response<dynamic>> dioPost(String path,{Map<String, dynamic> body}){
+  dio.options.headers = headers;
+  final response = dio.post(path,data: FormData.fromMap(body));
+  dio.options.headers = null;
+  return response;
+}
+
+Future<Response<dynamic>> dioGet(String path){
+  dio.options.headers = headers;
+  final response = dio.get(path);
+  dio.options.headers = null;
+  return response;
+}
 
 Widget getHomeByType(){
   if(loggedUser.type == 'sealer') return SalerTabsScreen();
