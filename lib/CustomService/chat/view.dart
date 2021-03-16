@@ -64,7 +64,7 @@ class _ServiceChatViewState extends State<ServiceChatView> {
                 return MessageBubble(
                   image: _chatModel.data[index].type == 1 ? _chatModel.data[index].file : null,
                   message:_chatModel.data[index].massage,
-                  date: _chatModel.data[index].createdAt,
+                  date: _chatModel.data[index].createdAt.toString(),
                   isMe:_chatModel.data[index].senderId == id,
                 );
               },

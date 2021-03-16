@@ -21,7 +21,7 @@ class ServiceHomeController {
     };
     FormData _formData = FormData.fromMap(_body);
     var response =
-    await NetWork().postData(url: 'getConversationByUser_id', formData: _formData,);
+    await NetWork().postData(url: 'getListChatByUser_id', formData: _formData,);
     if (response !=null) {
       _serviceAllChatsModel = ServiceAllChatsModel.fromJson(response);
     }

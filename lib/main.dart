@@ -6,6 +6,7 @@ import 'screens/splash/splash_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedHelper.clear();
   await SharedHelper.getUser();
   runApp(MyApp());
 }

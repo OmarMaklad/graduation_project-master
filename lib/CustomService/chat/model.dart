@@ -1,161 +1,141 @@
+// To parse this JSON data, do
+//
+//     final serviceChatModel = serviceChatModelFromJson(jsonString);
+
+import 'dart:convert';
+
+ServiceChatModel serviceChatModelFromJson(String str) => ServiceChatModel.fromJson(json.decode(str));
+
+String serviceChatModelToJson(ServiceChatModel data) => json.encode(data.toJson());
+
 class ServiceChatModel {
+  ServiceChatModel({
+    this.msg,
+    this.data,
+  });
+
   String msg;
-  List<Data> data;
+  List<Datum> data;
 
-  ServiceChatModel({this.msg, this.data});
+  factory ServiceChatModel.fromJson(Map<String, dynamic> json) => ServiceChatModel(
+    msg: json["msg"],
+    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+  );
 
-  ServiceChatModel.fromJson(Map<String, dynamic> json) {
-    msg = json['msg'];
-    if (json['data'] != null) {
-      data = new List<Data>();
-      json['data'].forEach((v) {
-        data.add(new Data.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['msg'] = this.msg;
-    if (this.data != null) {
-      data['data'] = this.data.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+    "msg": msg,
+    "data": List<dynamic>.from(data.map((x) => x.toJson())),
+  };
 }
 
-class Data {
+class Datum {
+  Datum({
+    this.id,
+    this.senderId,
+    this.receiverId,
+    this.conversationId,
+    this.massage,
+    this.file,
+    this.type,
+    this.createdAt,
+    this.updatedAt,
+    this.sender,
+    this.receiver,
+  });
+
   int id;
-  String massage;
-  String file;
-  int type;
-  int conversationId;
   int senderId;
   int receiverId;
-  String createdAt;
-  String updatedAt;
-  Sender sender;
-  Sender receiver;
+  int conversationId;
+  String massage;
+  dynamic file;
+  int type;
+  DateTime createdAt;
+  DateTime updatedAt;
+  Receiver sender;
+  Receiver receiver;
 
-  Data(
-      {this.id,
-        this.massage,
-        this.file,
-        this.type,
-        this.conversationId,
-        this.senderId,
-        this.receiverId,
-        this.createdAt,
-        this.updatedAt,
-        this.sender,
-        this.receiver});
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    id: json["id"],
+    senderId: json["sender_id"],
+    receiverId: json["receiver_id"],
+    conversationId: json["conversation_id"],
+    massage: json["massage"],
+    file: json["file"],
+    type: json["type"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+    sender: Receiver.fromJson(json["sender"]),
+    receiver: Receiver.fromJson(json["receiver"]),
+  );
 
-  Data.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    massage = json['massage'];
-    file = json['file'];
-    type = json['type'];
-    conversationId = json['conversation_id'];
-    senderId = json['sender_id'];
-    receiverId = json['receiver_id'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    sender =
-    json['sender'] != null ? new Sender.fromJson(json['sender']) : null;
-    receiver =
-    json['receiver'] != null ? new Sender.fromJson(json['receiver']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['massage'] = this.massage;
-    data['file'] = this.file;
-    data['type'] = this.type;
-    data['conversation_id'] = this.conversationId;
-    data['sender_id'] = this.senderId;
-    data['receiver_id'] = this.receiverId;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    if (this.sender != null) {
-      data['sender'] = this.sender.toJson();
-    }
-    if (this.receiver != null) {
-      data['receiver'] = this.receiver.toJson();
-    }
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "sender_id": senderId,
+    "receiver_id": receiverId,
+    "conversation_id": conversationId,
+    "massage": massage,
+    "file": file,
+    "type": type,
+    "created_at": createdAt.toIso8601String(),
+    "updated_at": updatedAt.toIso8601String(),
+    "sender": sender.toJson(),
+    "receiver": receiver.toJson(),
+  };
 }
 
-class Sender {
+class Receiver {
+  Receiver({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.type,
+    this.email,
+    this.emailVerifiedAt,
+    this.apiToken,
+    this.googleToken,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
+  });
+
   int id;
-  String userName;
-  String babyName;
-  String phone;
-  String email;
-  String dateOfBirth;
-  String sex;
+  String firstName;
+  String lastName;
   String type;
-  String padiatricianName;
-  String specialization;
-  Null emailVerifiedAt;
+  String email;
+  dynamic emailVerifiedAt;
   String apiToken;
-  int confirm;
-  String createdAt;
-  String updatedAt;
+  dynamic googleToken;
+  String image;
+  DateTime createdAt;
+  DateTime updatedAt;
 
-  Sender(
-      {this.id,
-        this.userName,
-        this.babyName,
-        this.phone,
-        this.email,
-        this.dateOfBirth,
-        this.sex,
-        this.type,
-        this.padiatricianName,
-        this.specialization,
-        this.emailVerifiedAt,
-        this.apiToken,
-        this.confirm,
-        this.createdAt,
-        this.updatedAt});
+  factory Receiver.fromJson(Map<String, dynamic> json) => Receiver(
+    id: json["id"],
+    firstName: json["first_name"],
+    lastName: json["last_name"],
+    type: json["type"],
+    email: json["email"],
+    emailVerifiedAt: json["email_verified_at"],
+    apiToken: json["api_token"],
+    googleToken: json["google_token"],
+    image: json["image"] == null ? null : json["image"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
 
-  Sender.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    userName = json['user_name'];
-    babyName = json['baby_name'];
-    phone = json['phone'];
-    email = json['email'];
-    dateOfBirth = json['date_of_birth'];
-    sex = json['sex'];
-    type = json['type'];
-    padiatricianName = json['padiatrician_name'];
-    specialization = json['specialization'];
-    emailVerifiedAt = json['email_verified_at'];
-    apiToken = json['api_token'];
-    confirm = json['confirm'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_name'] = this.userName;
-    data['baby_name'] = this.babyName;
-    data['phone'] = this.phone;
-    data['email'] = this.email;
-    data['date_of_birth'] = this.dateOfBirth;
-    data['sex'] = this.sex;
-    data['type'] = this.type;
-    data['padiatrician_name'] = this.padiatricianName;
-    data['specialization'] = this.specialization;
-    data['email_verified_at'] = this.emailVerifiedAt;
-    data['api_token'] = this.apiToken;
-    data['confirm'] = this.confirm;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "first_name": firstName,
+    "last_name": lastName,
+    "type": type,
+    "email": email,
+    "email_verified_at": emailVerifiedAt,
+    "api_token": apiToken,
+    "google_token": googleToken,
+    "image": image == null ? null : image,
+    "created_at": createdAt.toIso8601String(),
+    "updated_at": updatedAt.toIso8601String(),
+  };
 }

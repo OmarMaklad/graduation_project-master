@@ -32,7 +32,7 @@ class ServiceChatsCard extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  maxRadius: 35,
+                  maxRadius: 20,
                   backgroundColor: Colors.green,
                   child:CircleAvatar(
                     maxRadius: 33,
@@ -42,10 +42,10 @@ class ServiceChatsCard extends StatelessWidget {
                 SizedBox(width: 15,),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(name,style: TextStyle(color:Colors.black,fontSize: 18, fontFamily: "dinnextl bold",),),
-                    date!=null?Text(date,style: TextStyle(color:Colors.black,fontSize: 18, fontFamily: "dinnextl bold",),)
-                        :SizedBox(),
+                    Text(date,style: TextStyle(color:Colors.black,fontSize: 12, fontFamily: "dinnextl bold",),)
                   ],
                 ),
 

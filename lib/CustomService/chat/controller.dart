@@ -12,9 +12,7 @@ class ServiceChatController {
       "conversation_id": id,
     };
     FormData _formData = FormData.fromMap(_body);
-    var response =
-    await _netWork.postData(url: 'getConversationById', formData: _formData,);
-    print(response);
+    var response = await _netWork.postData(url: 'getConversationById', formData: _formData,);
     if (response !=null) {
       _chatModel = ServiceChatModel.fromJson(response);
     } else {

@@ -21,8 +21,7 @@ class MakerHomeController {
     };
     FormData _formData = FormData.fromMap(_body);
     var response =
-    await NetWork().postData(url: 'getConversationByUser_id', formData: _formData,);
-    print(response);
+    await NetWork().postData(url: 'getListChatByUser_id', formData: _formData,);
     if (response !=null) {
       _makerAllChatsModel = MakerAllChatsModel.fromJson(response);
     }
