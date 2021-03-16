@@ -27,7 +27,7 @@ class _SalerTabsScreenState extends State<SalerTabsScreen> {
     DonationView(),
     OrdersAccepted(),
     AddItems(),
-    AllChats(),
+    Text('')
   ];
 
   @override

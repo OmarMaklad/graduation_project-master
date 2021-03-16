@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileScreen(),
     BuyBasket(),
     UserHome(),
-    AllChats(admin: false,title: " ",),
+    Text(''),
     MoreScreen(),
   ];
 
