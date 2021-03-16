@@ -19,7 +19,7 @@ class MakerChatView extends StatefulWidget {
 class _MakerChatViewState extends State<MakerChatView> {
   MakerChatModel _chatModel;
   bool _isLoading = true;
-  Timer timer;
+  // Timer timer;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _MakerChatViewState extends State<MakerChatView> {
 
   @override
   void dispose() {
-    timer.cancel();
+    // timer.cancel();
     super.dispose();
   }
 

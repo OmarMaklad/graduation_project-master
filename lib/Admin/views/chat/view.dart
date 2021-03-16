@@ -19,7 +19,7 @@ class AdminChatView extends StatefulWidget {
 class _AdminChatViewState extends State<AdminChatView> {
   AdminChatModel _chatModel;
   bool _isLoading = true;
-  Timer timer;
+  // Timer timer;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _AdminChatViewState extends State<AdminChatView> {
 
   @override
   void dispose() {
-    timer.cancel();
+    // timer.cancel();
     super.dispose();
   }
 

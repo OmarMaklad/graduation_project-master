@@ -19,7 +19,7 @@ class ServiceChatView extends StatefulWidget {
 class _ServiceChatViewState extends State<ServiceChatView> {
   ServiceChatModel _chatModel;
   bool _isLoading = true;
-  Timer timer;
+  // Timer timer;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _ServiceChatViewState extends State<ServiceChatView> {
 
   @override
   void dispose() {
-    timer.cancel();
+    // timer.cancel();
     super.dispose();
   }
 
