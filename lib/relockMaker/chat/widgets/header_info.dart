@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants.dart';
-
+import '../../../constants.dart';
 
 class HeaderInfo extends StatelessWidget {
   final String date;

@@ -1,11 +1,9 @@
 import 'dart:io';
-
-import 'package:e7twa2/chat/controller.dart';
-import 'package:e7twa2/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/relockMaker/chat/controller.dart';
 import 'package:image_picker/image_picker.dart';
-
+import '../../../constants.dart';
 import 'customTextFeild.dart';
 
 TextEditingController _messageController = TextEditingController();
@@ -24,7 +22,7 @@ class SendMessage extends StatefulWidget {
 class _SendMessageState extends State<SendMessage> {
   bool _isLoading = false;
   File image;
-  ChatController _chatController = ChatController();
+  MakerChatController _chatController = MakerChatController();
   @override
   void dispose() {
     _isLoading = false;

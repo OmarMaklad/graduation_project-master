@@ -1,5 +1,6 @@
-import 'package:e7twa2/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../../../constants.dart';
 
 class MessageBubble extends StatelessWidget {
   final bool isMe;
@@ -26,7 +27,8 @@ class MessageBubble extends StatelessWidget {
             color: Colors.black,
             fontWeight: FontWeight.w700,
             ),
-          ) : Image.network(imagesUrl + image),
+            //TODO: imagesUrl
+          ) : Image.network('imagesUrl' + image),
           SizedBox(height: 10,),
           Align(
             alignment: Alignment.bottomLeft,
