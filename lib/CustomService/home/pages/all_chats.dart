@@ -36,7 +36,7 @@ class _ServiceAllChatsViewState extends State<ServiceAllChatsView> {
               final chat = _serviceAllChatsModel.data[index];
               return ServiceChatsCard(
                 id: chat.conversationId,
-                name: chat.sender.firstName,
+                name: chat.receiver.firstName + ' ' + chat.receiver.lastName,
                 date: chat.updatedAt.toString(),
               );
             },

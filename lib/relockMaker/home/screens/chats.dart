@@ -35,7 +35,7 @@ class _ReLockMakerAllChatsViewState extends State<ReLockMakerAllChatsView> {
               final chat = _makerAllChatsModel.data[index];
               return MakerChatsCard(
                 id: chat.conversationId,
-                name: chat.sender.firstName,
+                name: chat.receiver.firstName + ' ' + chat.receiver.lastName,
                 date: chat.updatedAt.toString(),
               );
             },

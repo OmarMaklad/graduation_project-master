@@ -38,7 +38,7 @@ class _AdminAllChatsViewState extends State<AdminAllChatsView> {
               final chat = _adminAllChatsModel.data[index];
               return AdminChatsCard(
                 id: chat.conversationId,
-                name: chat.sender.firstName,
+                name: chat.receiver.firstName + ' ' + chat.receiver.lastName,
                 date: chat.updatedAt.toString(),
               );
             },

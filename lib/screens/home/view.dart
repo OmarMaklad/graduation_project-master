@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/Admin/views/home/pages/allChats/view.dart';
+import 'package:graduation_project/screens/allChats/all_chats.dart';
 import 'package:graduation_project/screens/cart/view.dart';
 import 'package:graduation_project/screens/more/view.dart';
 import 'package:graduation_project/screens/profile/view.dart';
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileScreen(),
     BuyBasket(),
     UserHome(),
-    Text(''),
+    BuyerAllChatsView(),
     MoreScreen(),
   ];
 

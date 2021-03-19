@@ -6,11 +6,11 @@ class StartChatController {
 
   NetWork _netWork = NetWork();
 
-  Future<int> startChat(int id)async{
+  Future<int> startChat(int receiverId)async{
     final id = loggedUser.id;
     final formData = FormData.fromMap({
       'sender_id': id,
-      'receiver_id': id,
+      'receiver_id': receiverId,
       'massage': 'Hello'
     });
     final response = await _netWork.postData(url: 'addConversation',formData: formData);

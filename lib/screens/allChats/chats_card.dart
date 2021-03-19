@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/core/router.dart';
-import 'package:graduation_project/relockMaker/chat/view.dart';
+import 'package:graduation_project/screens/chat/view.dart';
 
-import '../../../constants.dart';
+import '../../constants.dart';
 
-class MakerChatsCard extends StatelessWidget {
+class BuyerChatsCard extends StatelessWidget {
   final String name;
   final String date;
   final int id;
-  const MakerChatsCard({this.name, this.date, this.id});
+  const BuyerChatsCard({this.name, this.date, this.id});
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return GestureDetector(
-      onTap: ()=> MagicRouter.navigateTo(MakerChatView(
+      onTap: ()=> MagicRouter.navigateTo(BuyerChatView(
         date: date,
         name: name,
         chatId: id,
@@ -46,8 +46,7 @@ class MakerChatsCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(name,style: TextStyle(color:Colors.black,fontSize: 18, fontFamily: "dinnextl bold",),),
-                    date!=null?Text(date,style: TextStyle(color:Colors.black,fontSize: 14, fontFamily: "dinnextl bold",),)
-                        :SizedBox(),
+                    Text(date,style: TextStyle(color:Colors.black,fontSize: 12, fontFamily: "dinnextl bold",),)
                   ],
                 ),
 
