@@ -1,3 +1,4 @@
+import 'package:graduation_project/core/start_chat_controller.dart';
 import 'package:graduation_project/screens/signup/model.dart';
 import '../../constants.dart';
 
@@ -34,6 +35,9 @@ class SignUpController {
           id: user.id,
           isLogged: true,
         );
+        StartChatController().startChat(SERVICE_ID);
+        if(loggedUser.type == 'buyer')
+          StartChatController().startChat(MAKER_ID);
         return 'ok';
       }
     }else

@@ -15,6 +15,10 @@ UserSingleton loggedUser = UserSingleton();
 
 const String DefaultErrorMessage = 'Sorry, Something went wrong!';
 
+const int ADMIN_ID = 2;
+const int MAKER_ID = 5;
+const int SERVICE_ID = 4;
+
 Future<Response<dynamic>> dioPost(String path,{Map<String, dynamic> body}){
   dio.options.headers = {
     'Authorization': 'Bearer ${loggedUser.apiToken}'
