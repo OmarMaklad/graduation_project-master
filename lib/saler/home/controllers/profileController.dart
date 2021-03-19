@@ -1,13 +1,9 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:graduation_project/core/network/network.dart';
 import 'package:graduation_project/saler/home/models/addModel.dart';
 import 'package:graduation_project/saler/home/models/notiffication.dart';
 import 'package:graduation_project/saler/home/models/profileModel.dart';
 import 'package:graduation_project/saler/home/models/sealerOrderModel.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../constants.dart';
 
 

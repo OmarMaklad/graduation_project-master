@@ -20,9 +20,9 @@ class _BottomShState extends State<BottomSh> {
   Widget build(BuildContext context) {
     return  DraggableScrollableSheet(
       expand: true,
-      maxChildSize:.5,
-      initialChildSize:.15 ,
-      minChildSize:.15,
+      maxChildSize:.3,
+      initialChildSize:.2 ,
+      minChildSize:.2,
       builder: (ctx,controller)=>Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -45,59 +45,10 @@ class _BottomShState extends State<BottomSh> {
                   color: Colors.grey.withOpacity(.5),
                   borderRadius: BorderRadius.circular(7)
               ),),
-            Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 30,vertical: 23),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text("allPrice : ",style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),),
-                      Text("${widget.totalPr} SAR",style:TextStyle( fontWeight: FontWeight.w600,
-                          fontSize: 16,color: Colors.green),),
 
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text("productSelect",style: TextStyle(fontSize: 14,fontWeight: FontWeight.w600,color: Colors.green),),
-                      SizedBox(width: 3,),
-                      Text(widget.numPro.toString(),style: TextStyle(
-                          fontSize: 16,
-                          color: kAccentColor,
-                          fontWeight: FontWeight.w600)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 3),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Product Price",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 14,),),
-                  Text("${widget.proPr}" " SAR",
-                    style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: Colors.green),),
-
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30,vertical: 3),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Delivery Price",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 14,),),
-                  Text("${widget.delPr}" " SAR",
-                    style: TextStyle(fontWeight: FontWeight.w600,fontSize: 16,color: Colors.green),),
-
-                ],
-              ),
-            ),
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: 20,vertical: 30),
-              child: CustomButton(onPressed:widget.onTap, title: "buyNow",color: Colors.green,),
+              child: CustomButton(onPressed:widget.onTap, title: "Buy Now",color: Colors.green,),
             ),
           ],
         ),

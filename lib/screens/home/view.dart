@@ -18,13 +18,12 @@ class HomeScreen extends StatefulWidget {
 }
 class _HomeScreenState extends State<HomeScreen> {
 
-  int userScreenIndex = 1;
+  int userScreenIndex = 2;
   List<Widget> userScreens= [
     ProfileScreen(),
     BuyBasket(),
     UserHome(),
     Text(''),
-    MoreScreen(),
   ];
 
   @override
@@ -57,7 +56,6 @@ class _HomeScreenState extends State<HomeScreen> {
           Icon(Icons.shopping_cart, size:30,color: Colors.green,),
           Icon(Icons.home, size: 30,color: Colors.green,),
           Icon(Icons.chat, size:30,color: Colors.green,),
-          Icon(Icons.more_horiz,size: 30,color: Colors.green,)
         ],
         onTap: (index) {
           setState(() {
