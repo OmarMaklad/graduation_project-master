@@ -1,12 +1,10 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:graduation_project/Admin/views/home/pages/Notification/view.dart';
-import 'package:graduation_project/Admin/views/home/pages/allChats/view.dart';
-import 'package:graduation_project/Admin/views/home/pages/items/view.dart';
 import 'package:graduation_project/saler/home/pages/Accepted.dart';
 import 'package:graduation_project/saler/home/pages/AddItems.dart';
 import 'package:graduation_project/saler/home/pages/Donation.dart';
+import 'package:graduation_project/saler/home/pages/all_chats.dart';
 import 'package:graduation_project/saler/home/pages/notifications.dart';
 import 'package:graduation_project/saler/home/pages/profile.dart';
 import '../../constants.dart';
@@ -27,7 +25,7 @@ class _SalerTabsScreenState extends State<SalerTabsScreen> {
     DonationView(),
     OrdersAccepted(),
     AddItems(),
-    Text('')
+    SalerAllChatsView(),
   ];
 
   @override
@@ -37,7 +35,6 @@ class _SalerTabsScreenState extends State<SalerTabsScreen> {
         userScreenIndex= widget.screenIndex;
       });
     }
-
     super.initState();
   }
   @override
