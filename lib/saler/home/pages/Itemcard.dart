@@ -3,6 +3,11 @@ import '../../../constants.dart';
 
 
 class ItemCard extends StatefulWidget {
+  final String image;
+  final String name;
+  final String sName;
+
+  const ItemCard({Key key, this.image, this.name, this.sName}) : super(key: key);
   @override
   _ItemCardState createState() => _ItemCardState();
 }
@@ -32,7 +37,10 @@ class _ItemCardState extends State<ItemCard> {
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(20),
-
+                  image: DecorationImage(
+                    image: NetworkImage("http://eco.ehtwa.site/public/dash/assets/img/${widget.image}"),
+                    fit: BoxFit.cover
+                  )
                 ),
 
               ),
@@ -41,10 +49,10 @@ class _ItemCardState extends State<ItemCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Items Name: ",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kTextColor),),
-                  Text("jacket",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,),),
+                  Text(widget.name,textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,),),
                   SizedBox(height:15,),
                   Text("Selar Name ",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kTextColor),),
-                  Text("Omar",textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
+                  Text(widget.sName,textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),),
                 ],
               ),
             ],

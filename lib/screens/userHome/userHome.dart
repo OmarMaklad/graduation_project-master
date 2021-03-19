@@ -1,11 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/screens/home/controller/controller.dart';
+import 'package:graduation_project/screens/home/model/model.dart';
 import 'package:graduation_project/screens/productDetails/view.dart';
 import 'package:graduation_project/widgets/appBar.dart';
 import 'package:graduation_project/widgets/customTextFeild.dart';
+import 'package:graduation_project/widgets/loading_indicator.dart';
 import '../../constants.dart';
 
 
-class UserHome extends StatelessWidget {
+class UserHome extends StatefulWidget {
+  @override
+  _UserHomeState createState() => _UserHomeState();
+}
+
+class _UserHomeState extends State<UserHome> {
+  BayerHomeController _homeController = BayerHomeController();
+  HomeModel _homeModel =HomeModel();
+  HomeModel _search =HomeModel();
+  bool loading = true;
+  void _getCate()async{
+    _search = await _homeController.getHome();
+    setState(() {
+      loading=false;
+      _homeModel.data = [..._search.data];
+    });
+  }
+
+  @override
+  void initState() {
+    _getCate();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -15,9 +40,28 @@ class UserHome extends StatelessWidget {
     CustomTextField(
       hint:"search",
       dIcon: Icons.search,
+      onsave: (value){
+        value = value.toLowerCase();
+        if (value.isNotEmpty) {
+          setState(() {
+            _homeModel.data = [
+              ..._search.data.where((ele) {
+                var all = ele.name.toLowerCase();
+                return all.contains(value);
+              }).toList()
+            ];
+          });
+        } else {
+          _homeModel.data = [..._search.data];
+        }
+      },
     ),
-    Expanded(
-      child: Padding(
+   loading?LoadingIndicator(): Expanded(
+      child: _homeModel.data.isEmpty?
+      Padding(
+          padding: EdgeInsets.only(top:height*.3),
+          child:Text("No Orders Yet",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)
+      ):Padding(
         padding:  EdgeInsets.symmetric(horizontal: 20),
         child: GridView.builder(
         gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
@@ -28,7 +72,10 @@ class UserHome extends StatelessWidget {
         ),
         itemBuilder:(ctx,index)=>InkWell(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (_)=>ProductDetails()));
+            print(_search.data[index].id);
+            Navigator.push(context, MaterialPageRoute(builder: (_)=>ProductDetails(
+              id: _search.data[index].id,
+            )));
           },
           child: Container(
             width: height * .25,
@@ -44,11 +91,10 @@ class UserHome extends StatelessWidget {
                       height: height * .15,
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        // image: DecorationImage(
-                        //   fit: BoxFit.cover,
-                        //   image: NetworkImage(widget.image)
-                        // ),
-                          color: Colors.green,
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage("http://eco.ehtwa.site/public/dash/assets/img/${_search.data[index].image}"),
+                            ),
                           borderRadius: BorderRadius.circular(15)),
                     ),
                   ],
@@ -56,30 +102,22 @@ class UserHome extends StatelessWidget {
                 SizedBox(height: 5,),
                 Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 5),
-                  child: Text("Flory shop",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
+                  child: Text(_search.data[index].name,style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
                 ),
                 SizedBox(height: 5,),
                 Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 3),
                   child: Row(children: [
                     Icon(Icons.category,size: 15,color: kPrimaryColor,),
-                    Text("Women",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
+                    Text(_search.data[index].category,style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
                   ],),
                 ),
                 SizedBox(height: 5,),
-                // Padding(
-                //   padding:  EdgeInsets.symmetric(horizontal: 3),
-                //   child: Row(children: [
-                //     Icon(Icons.money_off,size: 15,color: kPrimaryColor,),
-                //     Text("200",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold)),
-                //   ],),
-                // ),
-
               ],
             ),
           ),
         ),
-        itemCount:8),
+        itemCount:_search.data.length),
       ),
     ),
       ],

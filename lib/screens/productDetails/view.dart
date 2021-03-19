@@ -2,22 +2,43 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graduation_project/screens/cart/view.dart';
+import 'package:graduation_project/screens/home/controller/controller.dart';
+import 'package:graduation_project/screens/home/model/productModel.dart';
 import 'package:graduation_project/widgets/customButton.dart';
 import 'package:graduation_project/widgets/customTextFeild.dart';
+import 'package:graduation_project/widgets/loading_indicator.dart';
 import '../../constants.dart';
 
 class ProductDetails extends StatefulWidget {
+  final int id;
+
+  const ProductDetails({Key key, this.id}) : super(key: key);
   @override
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+
+  BayerHomeController _homeController =BayerHomeController();
+  ProductModel _productModel =ProductModel();
+  bool loading = true;
+  void _getProduct()async{
+    _productModel = await _homeController.getProduct(widget.id);
+    setState(() {
+      loading = false;
+    });
+  }
+  @override
+  void initState() {
+    _getProduct();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final height =MediaQuery.of(context).size.height;
     return  Scaffold(
       backgroundColor: kBackgroundColor,
-      body: Column(
+      body: loading?LoadingIndicator(): Column(
         children: [
           Stack(
             children: [
@@ -25,7 +46,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 height: height*.4,
                 width: double.infinity,
                 color: Colors.red,
-                child: Image.asset("assets/images/pic2.png" , fit: BoxFit.cover,),
+                child: Image.network("http://eco.ehtwa.site/public/dash/assets/img/${_productModel.data.image}", fit: BoxFit.cover,),
               ),
               Padding(
                 padding: EdgeInsets.only(top:height*.25),
@@ -41,12 +62,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                     children: [
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                        child: Text("Jacket",
+                        child: Text(_productModel.data.name,
                           style: TextStyle(fontSize:24,fontWeight: FontWeight.w600),),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text("200 SAR",
+                        child: Text("${_productModel.data.price} SAR",
                           style: TextStyle(fontSize: 18,color: Colors.green,
                               fontWeight: FontWeight.w600),),
                       ),
@@ -59,7 +80,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                        child: Text("lol"*150,
+                        child: Text(_productModel.data.desc,
                           style: TextStyle(fontSize: 14,color: kTextColor,fontWeight: FontWeight.w600),),
                       ),
                       SizedBox(height:5,),

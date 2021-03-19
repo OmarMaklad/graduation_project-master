@@ -5,6 +5,10 @@ class Validations {
     else if (!value.contains('@') || !value.contains('.')) return 'EX: example@mail.com';
     else return null;
   }
+  static String any(String value){
+    if(value.isEmpty) return 'حقل فارغ!';
+    else return null;
+  }
 
   static String phone(String value){
     if(value.isEmpty) return 'حقل فارغ!';
