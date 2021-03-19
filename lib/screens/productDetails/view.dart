@@ -1,8 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:graduation_project/core/validation.dart';
+import 'package:graduation_project/screens/cart/cubit/cubit.dart';
 import 'package:graduation_project/screens/cart/view.dart';
 import 'package:graduation_project/screens/home/controller/controller.dart';
+import 'package:graduation_project/screens/home/model/addToMaker.dart';
 import 'package:graduation_project/screens/home/model/productModel.dart';
 import 'package:graduation_project/widgets/customButton.dart';
 import 'package:graduation_project/widgets/customTextFeild.dart';
@@ -18,16 +21,31 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
-
+ GlobalKey<FormState> _globalKey =GlobalKey<FormState>();
+ TextEditingController _controller =TextEditingController();
   BayerHomeController _homeController =BayerHomeController();
   ProductModel _productModel =ProductModel();
+  AddToMakerModel _makerModel =AddToMakerModel();
   bool loading = true;
+  bool rLoading = false;
+  String desc;
   void _getProduct()async{
     _productModel = await _homeController.getProduct(widget.id);
     setState(() {
       loading = false;
     });
   }
+  void _sendMaker()async{
+    setState(() {
+      rLoading=true;
+    });
+    _makerModel = await _homeController.sendMaker(widget.id, desc);
+    setState(() {
+      rLoading = false;
+      _controller.clear();
+    });
+  }
+
   @override
   void initState() {
     _getProduct();
@@ -38,7 +56,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     final height =MediaQuery.of(context).size.height;
     return  Scaffold(
       backgroundColor: kBackgroundColor,
-      body: loading?LoadingIndicator(): Column(
+      body: loading?LoadingIndicator(): ListView(
         children: [
           Stack(
             children: [
@@ -57,48 +75,63 @@ class _ProductDetailsState extends State<ProductDetails> {
                       color: Colors.white,
                       borderRadius: BorderRadius.vertical(top: Radius.circular(30))
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                        child: Text(_productModel.data.name,
-                          style: TextStyle(fontSize:24,fontWeight: FontWeight.w600),),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text("${_productModel.data.price} SAR",
-                          style: TextStyle(fontSize: 18,color: Colors.green,
+                  child: Form(
+                    key: _globalKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                          child: Text(_productModel.data.name,
+                            style: TextStyle(fontSize:24,fontWeight: FontWeight.w600),),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text("${_productModel.data.price} SAR",
+                            style: TextStyle(fontSize: 18,color: Colors.green,
+                                fontWeight: FontWeight.w600),),
+                        ),
+
+                        SizedBox(height:25,),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Text("description",style: TextStyle(fontSize:18,
+                               fontWeight: FontWeight.w600),),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                          child: Text(_productModel.data.desc,
+                            style: TextStyle(fontSize: 14,color: kTextColor,fontWeight: FontWeight.w600),),
+                        ),
+                        SizedBox(height:5,),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 30),
+                          child: Text("if you wand make it with RelockMaker",style: TextStyle(fontSize:16,
                               fontWeight: FontWeight.w600),),
-                      ),
+                        ),
+                        CustomTextField(
+                          valid: Validations.any,
+                          hint: "desc",
+                          controller: _controller,
+                          onsave: (v){
+                            desc=v;
+                          },
 
-                      SizedBox(height:25,),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text("description",style: TextStyle(fontSize:18,
-                             fontWeight: FontWeight.w600),),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                        child: Text(_productModel.data.desc,
-                          style: TextStyle(fontSize: 14,color: kTextColor,fontWeight: FontWeight.w600),),
-                      ),
-                      SizedBox(height:5,),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 30),
-                        child: Text("if you wand make it with RelockMaker",style: TextStyle(fontSize:16,
-                            fontWeight: FontWeight.w600),),
-                      ),
-                      CustomTextField(
-                        hint: "desc",
-                        line: true,
-                      ),
-                      CustomButton(onPressed: (){}, title: "Sent To RelockMaker",color: Colors.green,),
-                      CustomButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (_)=>BuyBasket()));
-                      }, title: "Add to Cart",color: Colors.red,)
+                          line: true,
+                        ),
+                        rLoading==true?LoadingIndicator():CustomButton(onPressed: (){
+                          if(_globalKey.currentState.validate()){
+                           _sendMaker();
+                          }
+                        }, title: "Sent To RelockMaker",color: Colors.green,),
+                        CustomButton(onPressed: (){
+                          AddCubit.get(context).names.add(_productModel.data.name);
+                          AddCubit.get(context).images.add(_productModel.data.image);
+                          AddCubit.get(context).category.add(_productModel.data.category);
+                        }, title: "Add to Cart",color: Colors.red,)
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

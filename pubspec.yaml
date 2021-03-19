@@ -22,6 +22,8 @@ dependencies:
   fluttertoast: ^7.1.6
   image_picker:
   dio:
+  bloc:
+  flutter_bloc:
 
 
 
