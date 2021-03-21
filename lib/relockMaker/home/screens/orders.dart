@@ -36,7 +36,7 @@ class _ReLockMakerOrdersViewState extends State<ReLockMakerOrdersView> {
     final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        CustomAppBar(title: "Orders",),
+        CustomAppBar(title: "Orders",logout: true,),
         Expanded(
           child: _isLoading ? LoadingIndicator() : RefreshIndicator(
             onRefresh: getData,

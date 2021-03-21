@@ -118,7 +118,7 @@ class _AddItemsState extends State<AddItems> {
         key: _globalKey,
         child: Column(
           children: [
-            CustomAppBar(title: "Add Items",),
+            CustomAppBar(title: "Add Items",logout: true,),
             Expanded(
               child: ListView(
                 children: [

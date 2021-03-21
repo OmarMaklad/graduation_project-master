@@ -36,7 +36,7 @@ class _UserHomeState extends State<UserHome> {
     final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        CustomAppBar(title: "Home",),
+        CustomAppBar(title: "Home",logout: true,),
     CustomTextField(
       hint:"search",
       dIcon: Icons.search,

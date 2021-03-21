@@ -43,7 +43,7 @@ class MessageBubble extends StatelessWidget {
         ],
       ),
       decoration: BoxDecoration(
-        color: isMe ? kPrimaryColor : Colors.white ,
+          color: isMe ? Colors.greenAccent : Colors.white ,
         borderRadius: BorderRadius.circular(8)
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:graduation_project/widgets/logOut_button.dart';
 
 class MoreScreen extends StatefulWidget {
   @override
@@ -41,6 +42,9 @@ class _MoreScreenState extends State<MoreScreen> {
           'Information',
           style: TextStyle(color: Colors.black),
         ),
+        actions: [
+          LogoutButton(darkColor: true,),
+        ],
       ),
       body: ListView(
         children: [

@@ -39,7 +39,7 @@ class _SalerNotificationState extends State<SalerNotification> {
       },
       child: Column(
         children:[
-          CustomAppBar(title: "Notifications",),
+          CustomAppBar(title: "Notifications",logout: true,),
           loading?LoadingIndicator():
           _notificationModel.data.isEmpty?
           Padding(
@@ -52,7 +52,7 @@ class _SalerNotificationState extends State<SalerNotification> {
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               separatorBuilder: (ctx,ind)=>SizedBox(height:15,),
-              itemCount:10)),
+              itemCount:_notificationModel.data.length)),
         ],
       ),
     );

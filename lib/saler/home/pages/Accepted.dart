@@ -32,7 +32,7 @@ class _OrdersAcceptedState extends State<OrdersAccepted> {
     final height = MediaQuery.of(context).size.height;
     return loading?LoadingIndicator():Column(
       children: [
-        CustomAppBar(title: "Orders",),
+        CustomAppBar(title: "Orders",logout: true,),
         _ordersModel.data.isEmpty?
             Padding(
               padding: EdgeInsets.only(top:height*.3),

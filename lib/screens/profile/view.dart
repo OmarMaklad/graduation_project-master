@@ -107,7 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: kBackgroundColor,
       body: loading?LoadingIndicator():ListView(
         children: [
-          CustomAppBar(title: "Profile",),
+          CustomAppBar(title: "Profile",logout: true,),
           SizedBox(height: 30,),
           GestureDetector(
             onTap: (){_showPickerLogo(context);},

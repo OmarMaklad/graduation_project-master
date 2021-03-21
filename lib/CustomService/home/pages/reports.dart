@@ -27,7 +27,7 @@ class _AllReportsState extends State<AllReports> {
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomAppBar(title: "Reports",),
+            CustomAppBar(title: "Reports",logout: true,),
             Padding(
               padding:  EdgeInsets.only(top:40,left: 20),
               child: Text('Reports',style: TextStyle(

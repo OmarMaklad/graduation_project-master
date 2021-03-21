@@ -29,7 +29,7 @@ class _OrdersState extends State<Orders> {
     final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        CustomAppBar(title: "Orders Request",),
+        CustomAppBar(title: "Orders Request",logout: true,),
       Expanded(
             child: _isLoading ? LoadingIndicator() : ListView.separated(
                 itemBuilder:(cxt,index){
