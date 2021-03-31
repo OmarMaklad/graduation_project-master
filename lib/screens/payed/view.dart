@@ -57,7 +57,7 @@ class _PayedViewState extends State<PayedView> {
                     DropdownMenuItem(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 40),
-                        child: Text("Company1",
+                        child: Text("SMSA",
                           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
                       ),
                       onTap: (){
@@ -70,7 +70,7 @@ class _PayedViewState extends State<PayedView> {
                     DropdownMenuItem(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 40),
-                        child: Text("Company2",
+                        child: Text("Aramex",
                           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
                       ),
                       value: 1,
@@ -83,7 +83,7 @@ class _PayedViewState extends State<PayedView> {
                     DropdownMenuItem(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 40),
-                        child: Text("Company3",
+                        child: Text("DHL",
                           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
                       ),
                       value: 2,
@@ -96,7 +96,7 @@ class _PayedViewState extends State<PayedView> {
                     DropdownMenuItem(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 40),
-                        child: Text("Company3",
+                        child: Text("Zajel",
                           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
                       ),
                       value: 3,
@@ -109,7 +109,7 @@ class _PayedViewState extends State<PayedView> {
                     DropdownMenuItem(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 40),
-                        child: Text("Company4",
+                        child: Text("FedEx",
                           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
                       ),
                       value: 4,
@@ -192,10 +192,10 @@ class _PayedViewState extends State<PayedView> {
         Text("Total Price =${totalPrice + 30}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,color: kTextColor),)
             :SizedBox(),
         CustomTextField(
-          hint: "iban",
+          hint: "Card number",
         ),
         CustomTextField(
-          hint: "bank Name",
+          hint: "CVV",
         ),
         CustomTextField(
           hint: "coupon",

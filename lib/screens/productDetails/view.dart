@@ -128,7 +128,6 @@ class _ProductDetailsState extends State<ProductDetails> {
                           onsave: (v){
                             days=v;
                           },
-                          line: true,
                         ),
                         rLoading==true?LoadingIndicator():CustomButton(onPressed: (){
                           if(_globalKey.currentState.validate()){

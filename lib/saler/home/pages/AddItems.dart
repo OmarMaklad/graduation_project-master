@@ -233,7 +233,7 @@ class _AddItemsState extends State<AddItems> {
                                 value: 2,
                                 onTap: (){
                                   setState(() {
-                                    category="One Brand";
+                                    category="Not a Brand";
                                   });
                                 },
                               ),

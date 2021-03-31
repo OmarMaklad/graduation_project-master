@@ -75,7 +75,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             RadioListTile(
               selected: type == typesEnum.Sealer,
-                title: Text('Sealer'),
+                title: Text('Seller'),
                 toggleable: true,
                 value: typesEnum.Sealer, groupValue: type, onChanged: (v){
               setState(()=> type = v);
