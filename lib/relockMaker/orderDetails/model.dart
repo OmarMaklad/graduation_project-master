@@ -1,52 +1,25 @@
-// To parse this JSON data, do
-//
-//     final makerOrderDetailsModel = makerOrderDetailsModelFromJson(jsonString);
-
-import 'dart:convert';
-
-MakerOrderDetailsModel makerOrderDetailsModelFromJson(String str) => MakerOrderDetailsModel.fromJson(json.decode(str));
-
-String makerOrderDetailsModelToJson(MakerOrderDetailsModel data) => json.encode(data.toJson());
-
 class MakerOrderDetailsModel {
-  MakerOrderDetailsModel({
-    this.msg,
-    this.data,
-  });
-
   String msg;
   Data data;
 
-  factory MakerOrderDetailsModel.fromJson(Map<String, dynamic> json) => MakerOrderDetailsModel(
-    msg: json["msg"],
-    data: Data.fromJson(json["data"]),
-  );
+  MakerOrderDetailsModel({this.msg, this.data});
 
-  Map<String, dynamic> toJson() => {
-    "msg": msg,
-    "data": data.toJson(),
-  };
+  MakerOrderDetailsModel.fromJson(Map<String, dynamic> json) {
+    msg = json['msg'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['msg'] = this.msg;
+    if (this.data != null) {
+      data['data'] = this.data.toJson();
+    }
+    return data;
+  }
 }
 
 class Data {
-  Data({
-    this.id,
-    this.buyerId,
-    this.buyerFirstName,
-    this.buyerLastName,
-    this.sealerId,
-    this.sealerFirstName,
-    this.sealerLastName,
-    this.productId,
-    this.productName,
-    this.productImage,
-    this.status,
-    this.desc,
-    this.image,
-    this.createdAt,
-    this.updatedAt,
-  });
-
   int id;
   int buyerId;
   String buyerFirstName;
@@ -59,43 +32,66 @@ class Data {
   String productImage;
   int status;
   String desc;
-  dynamic image;
-  DateTime createdAt;
-  DateTime updatedAt;
+  Null image;
+  int days;
+  String createdAt;
+  String updatedAt;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["id"],
-    buyerId: json["buyer_id"],
-    buyerFirstName: json["buyer_first_name"],
-    buyerLastName: json["buyer_last_name"],
-    sealerId: json["sealer_id"],
-    sealerFirstName: json["sealer_first_name"],
-    sealerLastName: json["sealer_last_name"],
-    productId: json["product_id"],
-    productName: json["product_name"],
-    productImage: json["product_image"],
-    status: json["status"],
-    desc: json["desc"],
-    image: json["image"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
-  );
+  Data(
+      {this.id,
+        this.buyerId,
+        this.buyerFirstName,
+        this.buyerLastName,
+        this.sealerId,
+        this.sealerFirstName,
+        this.sealerLastName,
+        this.productId,
+        this.productName,
+        this.productImage,
+        this.status,
+        this.desc,
+        this.image,
+        this.days,
+        this.createdAt,
+        this.updatedAt});
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "buyer_id": buyerId,
-    "buyer_first_name": buyerFirstName,
-    "buyer_last_name": buyerLastName,
-    "sealer_id": sealerId,
-    "sealer_first_name": sealerFirstName,
-    "sealer_last_name": sealerLastName,
-    "product_id": productId,
-    "product_name": productName,
-    "product_image": productImage,
-    "status": status,
-    "desc": desc,
-    "image": image,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
-  };
+  Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    buyerId = json['buyer_id'];
+    buyerFirstName = json['buyer_first_name'];
+    buyerLastName = json['buyer_last_name'];
+    sealerId = json['sealer_id'];
+    sealerFirstName = json['sealer_first_name'];
+    sealerLastName = json['sealer_last_name'];
+    productId = json['product_id'];
+    productName = json['product_name'];
+    productImage = json['product_image'];
+    status = json['status'];
+    desc = json['desc'];
+    image = json['image'];
+    days = json['days'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['buyer_id'] = this.buyerId;
+    data['buyer_first_name'] = this.buyerFirstName;
+    data['buyer_last_name'] = this.buyerLastName;
+    data['sealer_id'] = this.sealerId;
+    data['sealer_first_name'] = this.sealerFirstName;
+    data['sealer_last_name'] = this.sealerLastName;
+    data['product_id'] = this.productId;
+    data['product_name'] = this.productName;
+    data['product_image'] = this.productImage;
+    data['status'] = this.status;
+    data['desc'] = this.desc;
+    data['image'] = this.image;
+    data['days'] = this.days;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    return data;
+  }
 }

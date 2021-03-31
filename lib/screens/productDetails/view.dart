@@ -23,12 +23,14 @@ class ProductDetails extends StatefulWidget {
 class _ProductDetailsState extends State<ProductDetails> {
  GlobalKey<FormState> _globalKey =GlobalKey<FormState>();
  TextEditingController _controller =TextEditingController();
+ TextEditingController _controller1 =TextEditingController();
   BayerHomeController _homeController =BayerHomeController();
   ProductModel _productModel =ProductModel();
   AddToMakerModel _makerModel =AddToMakerModel();
   bool loading = true;
   bool rLoading = false;
   String desc;
+  int days;
   void _getProduct()async{
     _productModel = await _homeController.getProduct(widget.id);
     setState(() {
@@ -39,7 +41,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     setState(() {
       rLoading=true;
     });
-    _makerModel = await _homeController.sendMaker(widget.id, desc);
+    _makerModel = await _homeController.sendMaker(widget.id, desc,days);
     setState(() {
       rLoading = false;
       _controller.clear();
@@ -116,7 +118,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                           onsave: (v){
                             desc=v;
                           },
-
+                          line: true,
+                        ),
+                        CustomTextField(
+                          valid: Validations.any,
+                          hint: "Days",
+                          type: TextInputType.number,
+                          controller: _controller1,
+                          onsave: (v){
+                            days=v;
+                          },
                           line: true,
                         ),
                         rLoading==true?LoadingIndicator():CustomButton(onPressed: (){
@@ -128,6 +139,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                           AddCubit.get(context).names.add(_productModel.data.name);
                           AddCubit.get(context).images.add(_productModel.data.image);
                           AddCubit.get(context).category.add(_productModel.data.category);
+                          AddCubit.get(context).prices.add(_productModel.data.price);
                         }, title: "Add to Cart",color: Colors.red,)
 
                       ],

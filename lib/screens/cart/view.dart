@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graduation_project/screens/cart/cubit/cubit.dart';
+import 'package:graduation_project/screens/payed/view.dart';
 
 import '../../constants.dart';
 import 'bottom_sh.dart';
@@ -55,6 +56,10 @@ class _BuyBasketState extends State<BuyBasket> {
                                   Text(cubit.category[index],
                                     style: TextStyle(fontSize: 14,color: kTextColor,
                                         fontFamily: "dinnextl medium"),),
+                                  SizedBox(height: 15,),
+                                  Text(cubit.prices[index],
+                                    style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: kPrimaryColor),),
+
                                 ],
                               ),
                             ),
@@ -83,19 +88,10 @@ class _BuyBasketState extends State<BuyBasket> {
            builder: (_)=>BottomSh(
              onTap: (){
             setState(() {
-              cubit.names.clear();
-              cubit.category.clear();
-              cubit.images.clear();
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>PayedView()));
+
             });
-            Scaffold.of(context).showSnackBar(SnackBar(
-                backgroundColor: Colors.green,
-                content: Text(
-                 "buy success",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14),
-                )));
+
              },
 
            ),

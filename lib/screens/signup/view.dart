@@ -20,6 +20,7 @@ class SignUpScreen extends StatefulWidget {
 enum typesEnum {Sealer,Buyer}
 
 class _SignUpScreenState extends State<SignUpScreen> {
+
   bool _isLoading = false;
   String firstName,lastName,email,password;
   typesEnum type = typesEnum.Sealer;
@@ -58,7 +59,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             CustomTextField(
               hint: 'Password',
-              valid: Validations.password,
+              valid:(v){
+                bool passValid = RegExp("^(?=.{8,32}\$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%^&*(),.?:{}|<>]).*").hasMatch(v);
+                if (v.isEmpty ||!passValid)
+                {
+                  return 'Password should contain Minimum 1 Upper case Minimum 1 lowercase Minimum 1 Numeric Number Minimum 1 Special Character Common Allow Character ( ! @ # \$ & * ~ )';
+                }
+              },
+              icon: Icons.lock_outline,
               onsave: (v)=> password = v,
             ),
             Padding(

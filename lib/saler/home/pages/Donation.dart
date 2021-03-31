@@ -22,6 +22,12 @@ class _DonationViewState extends State<DonationView> {
          key: _globalKey,
         child: ListView(
           children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 35,vertical: 20),
+              child: Text("When you donate five times a year to societies we will give you discount code",
+                style: TextStyle(fontSize: 20,color: kPrimaryColor,fontWeight: FontWeight.bold),),
+            ),
+
             Container(
               height: height*.3,
               margin: EdgeInsets.symmetric(vertical:height*.05,horizontal: height*.08),

@@ -6,7 +6,6 @@ import 'package:graduation_project/core/user_singleton.dart';
 import 'package:graduation_project/relockMaker/home/view.dart';
 import 'package:graduation_project/screens/home/view.dart';
 import 'package:graduation_project/screens/login/view.dart';
-
 import 'saler/home/view.dart';
 
 Dio dio = Dio()..options.baseUrl = 'http://eco.ehtwa.site/api/';

@@ -59,6 +59,13 @@ class _ReLockMakerOrderDetailsViewState
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        'Days : ${_makerOrderDetailsModel.data.days}',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     Container(
                       padding: EdgeInsets.all(10),
                       margin: EdgeInsets.symmetric(vertical: 10),

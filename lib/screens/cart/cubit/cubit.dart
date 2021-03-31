@@ -14,5 +14,6 @@ class AddCubit extends Cubit<CardState> {
   List names = [];
   List images = [];
   List category = [];
+  List prices = [];
 
 }

@@ -44,10 +44,9 @@ class _OrderCardState extends State<OrderCard> {
                 decoration: BoxDecoration(
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(20),
-                  //TODO: change image url
-                  // image: DecorationImage(
-                  //   image: NetworkImage(image),
-                  // )
+                  image: DecorationImage(
+                    image:  NetworkImage("http://eco.ehtwa.site/public/dash/assets/img/${widget.image}"),
+                  )
                 ),
               ),
               SizedBox(

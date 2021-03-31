@@ -211,6 +211,32 @@ class _AddItemsState extends State<AddItems> {
                                   });
                                 },
                               ),
+                              DropdownMenuItem(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 40),
+                                  child: Text("Brand",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
+                                ),
+                                value: 2,
+                                onTap: (){
+                                  setState(() {
+                                    category="Brand";
+                                  });
+                                },
+                              ),
+                              DropdownMenuItem(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 40),
+                                  child: Text("One Brand",
+                                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14,color: kPrimaryColor),),
+                                ),
+                                value: 2,
+                                onTap: (){
+                                  setState(() {
+                                    category="One Brand";
+                                  });
+                                },
+                              ),
                             ],
                             onTap: (){
                             },
@@ -231,6 +257,15 @@ class _AddItemsState extends State<AddItems> {
                       },
                     controller: _controller,
                       dIcon: Icons.category,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 5),
+                    child: Text(
+                      "(5% of the price will be counted as app profits)",
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14),),
                   ),
                   CustomTextField(
                       hint: "Product Price",

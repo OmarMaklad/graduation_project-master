@@ -103,6 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   CustomTextField(
                     hint: 'Password',
                     valid: Validations.password,
+                    icon: Icons.lock_outline,
                     onsave: (value)=> password = value,
                   ),
                 ],

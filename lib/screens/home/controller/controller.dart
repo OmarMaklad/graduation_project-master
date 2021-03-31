@@ -33,12 +33,13 @@ class BayerHomeController {
   }
 
   AddToMakerModel _makerModel =AddToMakerModel();
-  Future<AddToMakerModel> sendMaker(int id,String desc)async{
+  Future<AddToMakerModel> sendMaker(int id,String desc,int days)async{
     print(id);
     final response = await dioPost('add_order_to_maker',
         body: {
           "product_id": id,
           "desc":desc,
+          "days":days,
     });
     _makerModel = AddToMakerModel.fromJson(response.data);
     return _makerModel;
